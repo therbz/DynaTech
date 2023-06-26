@@ -1,5 +1,7 @@
 package me.profelements.dynatech.items.tools;
 
+import com.griefdefender.api.GriefDefender;
+import com.griefdefender.api.claim.Claim;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -25,6 +27,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.UUID;
 
 import com.google.common.base.Preconditions;
 
@@ -68,7 +71,16 @@ public class AngelGem extends SlimefunItem implements NotPlaceable, Listener {
                 e.getPlayer().setFallDistance(0f);
                 e.getItem().setItemMeta(updateLore(e.getItem(), e.getPlayer()));
             }
-            if (!e.getPlayer().getAllowFlight()) {
+
+            // therbz GriefDefender implementation
+            boolean hasClaimAccess = true;
+            if (Bukkit.getPluginManager().isPluginEnabled("GriefDefender")) {
+                Claim currentClaim = GriefDefender.getCore().getClaimAt(e.getPlayer().getLocation());
+                UUID userUUID = e.getPlayer().getUniqueId();
+                hasClaimAccess = currentClaim!=null && (currentClaim.getUserTrusts().contains(userUUID) || currentClaim.getOwnerUniqueId().equals(userUUID));
+            }
+
+            if (!e.getPlayer().getAllowFlight() && hasClaimAccess) {
                 e.getPlayer().setAllowFlight(true);
                 setFlySpeed(0.10f);
             } else {

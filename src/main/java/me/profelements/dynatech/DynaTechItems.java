@@ -121,7 +121,7 @@ public class DynaTechItems {
         "&fPermanent Creative Flight.",
         "&fHas some speed adjustment settings.",
         "",
-        "&f&oFly just like a bird~",
+        "&c&nOnly works in your claims!",
         "",
         "&7Flight: <enabled>",
         "&7Flight Speed: <speed>"

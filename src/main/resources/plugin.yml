@@ -1,5 +1,5 @@
 ## CHANGE this to the name of your plugin.
-name: DynaTech
+name: DynaTech-therbz
 
 ## CHANGE this to your username.
 author: ProfElements
@@ -15,10 +15,10 @@ website: https://github.com/ProfElements/DynaTech
 
 ## This is required and marks Slimefun as a plugin dependency.
 depend: [Slimefun]
-softdepend: [ExoticGarden, InfinityExpansion]
+softdepend: [ExoticGarden, InfinityExpansion, GriefDefender]
 
 ## This value is automatically replaced by the version specified in your pom.xml file, do not change this.
-version: ${project.version}
+version: ${project.version}-therbz
 
 ## This is the minimum minecraft version required to run your plugin.
 api-version: 1.14
